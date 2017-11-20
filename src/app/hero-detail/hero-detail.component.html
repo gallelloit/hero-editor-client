@@ -6,6 +6,11 @@
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
   </div>
+  <ul>
+    <li *ngFor="let superpower of hero.superpowers">
+        {{superpower.name}}
+    </li>
+  </ul>
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
 </div>
