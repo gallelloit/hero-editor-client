@@ -12,23 +12,31 @@ Only one thing to say. This web client, that happens to be a Hero CRUD, being th
 ```
 (...)
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
-   ],
+    AppRoutingModule,
+    HttpClientModule,
+
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
+  ],
 (...)
 ```
 
 Particularly take a look to the following line. And remember it.
 
 ```
-InMemoryWebApiModule.forRoot(InMemoryDataService)
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
 ```
 
-That is the line where it is announced that the service will redirect any HTTP request to the local data storage of the browser.
+That is the line where it is announced that the service will redirect any HTTP request to the local data storage of the browser. As said in the comment, it has to be removed when a real server is ready to receive requests.
 
 ## Instructions
 
