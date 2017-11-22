@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class HeroService {
 
-  private heroesUrl = 'http://localhost:8080/heroeditorbackend/heroes/';  // URL to web api
+  private heroesUrl = 'http://localhost:8080/heroeditorbackend/heroes';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -32,7 +32,7 @@ export class HeroService {
 
   /** GET hero by id. Return `undefined` when id not found */
   getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
+    const url = `${this.heroesUrl}?id=${id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
         map(heroes => heroes[0]), // returns a {0|1} element array
@@ -46,7 +46,7 @@ export class HeroService {
 
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}${id}`;
+    const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
@@ -79,7 +79,7 @@ export class HeroService {
   /** DELETE: delete the hero from the server */
   deleteHero (hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
-    const url = `${this.heroesUrl}${id}`;
+    const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
