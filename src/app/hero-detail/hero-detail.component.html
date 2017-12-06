@@ -11,6 +11,15 @@
         {{superpower.name}}
     </li>
   </ul>
+  <div>
+    <label>Add superpower:
+      <input #superpowerName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="addSuperpower(hero.id, superpowerName.value); superpowerName.value=''">
+      add
+    </button>
+  </div>
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
 </div>
