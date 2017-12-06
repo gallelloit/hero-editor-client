@@ -1,4 +1,3 @@
 export class Superpower {
-  id: number;
-  description: string;
+  name: string;
 }

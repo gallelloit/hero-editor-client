@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Hero }         from '../hero';
+import { Superpower }         from '../superpower';
 import { HeroService }  from '../hero.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { HeroService }  from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
+  superpowers: Superpower[];
 
   constructor(
     private route: ActivatedRoute,
@@ -37,4 +39,16 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.updateHero(this.hero)
       .subscribe(() => this.goBack());
   }
+
+  addSuperpower(heroId: number, superpowerName: string){
+    superpowerName = superpowerName.trim();
+    if (!superpowerName) { return; }
+
+    var superpowerObj = new Superpower;
+    superpowerObj.name = superpowerName;
+
+    this.heroService.addSuperpower(heroId, superpowerObj)
+      .subscribe(superpower => {
+        this.hero.superpowers.push(superpowerObj);
+      });  }
 }

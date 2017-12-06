@@ -6,11 +6,18 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
+import { Superpower } from './superpower';
 import { MessageService } from './message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
+const httpOptionsText = {
+  headers: new HttpHeaders({
+    'responseType': 'text'
+ })
+}
 
 @Injectable()
 export class HeroService {
@@ -91,9 +98,21 @@ export class HeroService {
   updateHero (hero: Hero): Observable<any> {
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.put(url, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+    return this.http.put(url, hero, {'responseType': 'text'}).pipe(
+      tap(_ =>
+        this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+
+  /** PUT: add the hero on the server */
+  addSuperpower (heroId: number, superpower: Superpower): Observable<any> {
+    const url = `${this.heroesUrl}/addSuperpower/${heroId}`;
+    return this.http.put(url, superpower, {'responseType': 'text'}).pipe(
+      tap(_ =>
+        this.log(`added superpower "${superpower.name}" to hero id=${heroId}`)),
+      catchError(this.handleError<any>('addSuperpower'))
     );
   }
 
