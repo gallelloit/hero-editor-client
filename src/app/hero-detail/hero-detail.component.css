@@ -1,7 +1,7 @@
 /* HeroDetailComponent's private CSS styles */
 label {
   display: inline-block;
-  width: 3em;
+  width: 12em;
   margin: .5em 0;
   color: #607D8B;
   font-weight: bold;
@@ -11,20 +11,46 @@ input {
   font-size: 1em;
   padding-left: .4em;
 }
-button {
-  margin-top: 20px;
-  font-family: Arial;
+.button {
   background-color: #eee;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
-  cursor: pointer; cursor: hand;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
 }
+
 button:hover {
   background-color: #cfd8dc;
 }
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
+
+button.delete {
+  position: absolute;
+  left: 194px;
+  top: 7px;
+  background-color: gray !important;
+  color: white;
+}
+
+.superpowers {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.superpowers li {
+  position: relative;
+  cursor: pointer;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.superpowers li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
 }

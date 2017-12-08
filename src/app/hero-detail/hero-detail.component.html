@@ -6,9 +6,12 @@
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
   </div>
-  <ul>
+  <ul class="superpowers">
     <li *ngFor="let superpower of hero.superpowers">
-        {{superpower.name}}
+      <a>{{superpower.name}}</a>
+        <button class="delete" title="remove superpower"
+          (click)="removeSuperpower(hero.id, superpower)">x
+        </button>
     </li>
   </ul>
   <div>
