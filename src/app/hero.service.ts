@@ -110,16 +110,6 @@ export class HeroService {
     );
   }
 
-  removeSuperpower (heroId: number, superpower: Superpower): Observable<Superpower>{
-    const url = `${this.heroesUrl}/removeSuperpower/${heroId}/${superpower.name}`;
-
-    return this.http.delete<Superpower>(url, {'responseType': 'text'}).pipe(
-      tap(_ => this.log(`removed superpower name=${superpower.name}`)),
-      catchError(this.handleError<Superpower>('removeSuperpower'))
-    );
-
-  }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.

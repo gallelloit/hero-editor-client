@@ -56,8 +56,9 @@ export class HeroDetailComponent implements OnInit {
       });
     }
 
-    removeSuperpower(heroId: number, superpower: Superpower){
+    removeSuperpower(superpower: Superpower){
       this.hero.superpowers = this.hero.superpowers.filter(s => s !== superpower);
-      this.heroService.removeSuperpower(heroId, superpower).subscribe();
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
     }
 }

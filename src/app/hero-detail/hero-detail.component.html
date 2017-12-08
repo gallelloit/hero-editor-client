@@ -10,7 +10,7 @@
     <li *ngFor="let superpower of hero.superpowers">
       <a>{{superpower.name}}</a>
         <button class="delete" title="remove superpower"
-          (click)="removeSuperpower(hero.id, superpower)">x
+          (click)="removeSuperpower(superpower)">x
         </button>
     </li>
   </ul>
