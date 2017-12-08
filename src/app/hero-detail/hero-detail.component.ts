@@ -49,6 +49,9 @@ export class HeroDetailComponent implements OnInit {
 
     this.heroService.addSuperpower(heroId, superpowerObj)
       .subscribe(superpower => {
+        if (!this.hero.superpowers){
+          this.hero.superpowers = [];
+        }
         this.hero.superpowers.push(superpowerObj);
       });  }
 }

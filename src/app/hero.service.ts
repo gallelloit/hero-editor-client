@@ -13,12 +13,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const httpOptionsText = {
-  headers: new HttpHeaders({
-    'responseType': 'text'
- })
-}
-
 @Injectable()
 export class HeroService {
 
